@@ -1,138 +1,624 @@
 <!DOCTYPE html>
 <html lang="en">
-<!DOCTYPE html>
-<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Akeem Dodson | Web Developer & Cricket Coach</title>
+    <title>Akeem Dodson | Creative Director, Systems Engineer & Logistics Strategist</title>
+    <link rel="stylesheet" href="/resources/styles.css">
+    <!-- Importing modern typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
     
     <style>
-        /* This is a CSS comment. The browser ignores this text! */
-        
-        /* The 'body' selector targets the entire visible page */
-        body {
-            font-family: 'Helvetica Neue', Arial, sans-serif;
-            line-height: 1.6;
+        /* --- CSS VARIABLES (COLOR THEME) --- */
+        :root {
+            --bg-dark: #09090b;       /* Pure dark zinc background */
+            --bg-card: #18181b;       /* Card surface */
+            --accent: #6366f1;        /* Indigo accent */
+            --accent-muted: rgba(99, 102, 241, 0.12);
+            --text-main: #f4f4f5;     /* Main white text */
+            --text-muted: #a1a1aa;    /* Secondary text */
+            --border-color: #27272a;  /* Structural borders */
+        }
+
+        /* --- GLOBAL RESET & BASE STYLES --- */
+        * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            background-color: #f4f6f8; /* A very light gray background */
-            color: #333333; /* Dark gray text is easier to read than pure black */
         }
 
-        /* Styling the header section to use your USA Cricket Navy Blue */
-        header {
-            background-color: #0a1f44;
-            color: #ffffff;
-            padding: 40px 0;
-            text-align: center;
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            line-height: 1.6;
         }
 
-        /* Removing the bullet points from the navigation list */
-        nav ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        /* Making the navigation links look like a menu */
-        nav li {
-            display: inline;
-            margin: 0 15px;
-        }
-
-        /* Changing the link colors in the header so they are readable */
-        header a {
-            color: #c5a059; /* Prestige Gold */
+        a {
             text-decoration: none;
+            color: inherit;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* --- NAVIGATION --- */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: rgba(9, 9, 11, 0.92);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-color);
+            padding: 20px 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-weight: 900;
+            font-size: 1.15rem;
+            letter-spacing: 1px;
+        }
+
+        .logo-accent {
+            background-color: white;
+            color: black;
+            padding: 2px 7px;
+            border-radius: 4px;
+            font-style: italic;
+            margin-right: 6px;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 28px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+            transition: color 0.25s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-main);
+        }
+
+        .nav-cta {
+            border: 1px solid var(--border-color);
+            padding: 8px 18px;
+            border-radius: 50px;
+            color: var(--text-main) !important;
+            transition: all 0.3s ease !important;
+        }
+
+        .nav-cta:hover {
+            border-color: var(--accent);
+            background-color: var(--accent-muted);
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            padding: 200px 0 100px 0;
+            min-height: 82vh;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            justify-items: center;
+        }
+
+        .badge {
+            display: inline-block;
+            border: 1px solid var(--border-color);
+            padding: 6px 16px;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-muted);
+            margin-bottom: 24px;
+        }
+
+        .hero h1 {
+            font-size: 4.8rem;
+            font-weight: 900;
+            line-height: 1.05;
+            margin-bottom: 24px;
+            letter-spacing: -2px;
+        }
+
+        .italic-accent {
+            font-style: italic;
+            color: var(--text-muted);
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            max-width: 680px;
+            margin-bottom: 40px;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: white;
+            color: black;
+            padding: 16px 32px;
+            border-radius: 50px;
+            font-weight: 700;
+            transition: all 0.25s ease;
+        }
+
+        .btn:hover {
+            background-color: #e4e4e7;
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--text-main);
+            border: 1px solid var(--border-color);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--accent);
+            background-color: var(--accent-muted);
+        }
+
+        /* --- IMAGES --- */
+        .profile-img {
+            width: 420px;
+            height: 600px;
+            border-radius: 60%;
+            align-self: center;
+            object-position: top;
+            object-fit: cover;
+            margin-bottom: 24px;
+            border: 1px solid var(--border-color);
+        }
+
+        .card-image-container {
+            width: 100%;
+            height: 220px;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 24px;
+            position: relative;
+            background-color: #121214;
+        }
+
+        .card-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .card:hover .card-img {
+            transform: scale(1.04);
+        }
+
+        /* --- SECTIONS & GRIDS --- */
+        .section {
+            padding: 120px 0;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .bg-alt {
+            background-color: #0c0c0e;
+        }
+
+        .section-header {
+            margin-bottom: 60px;
+        }
+
+        .section-tag {
+            color: var(--accent);
+            font-family: monospace;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 12px;
+            display: inline-block;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            text-transform: uppercase;
+            font-weight: 900;
+            letter-spacing: -1px;
+        }
+
+        .section-subtitle {
+            color: var(--text-muted);
+            margin-top: 12px;
+            font-size: 1.1rem;
+            max-width: 720px;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 32px;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+            gap: 32px;
+        }
+
+        /* --- CARDS --- */
+        .card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            padding: 40px;
+            border-radius: 16px;
+            transition: border-color 0.3s ease, transform 0.2s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card:hover {
+            border-color: var(--accent);
+        }
+
+        .card h3 {
+            font-size: 1.45rem;
+            margin-bottom: 14px;
+            font-weight: 700;
+        }
+
+        .card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.65;
+        }
+
+        .card-list {
+            list-style: none;
+            margin: 20px 0 24px 0;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .card-list li {
+            margin-bottom: 8px;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .card-list li::before {
+            content: "→";
+            color: var(--accent);
+            position: absolute;
+            left: 0;
             font-weight: bold;
         }
 
-        header a:hover {
-            color: #ffffff; /* Turns white when you hover over it */
+        .project-tag {
+            color: var(--accent);
+            font-family: monospace;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: block;
+            margin-bottom: 12px;
         }
 
-        /* Putting each section into a clean white "card" */
-        section {
-            background-color: #ffffff;
-            max-width: 800px;
-            margin: 30px auto; /* Centers the card on the screen */
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Adds a subtle shadow */
-        }
-
-        /* Styling the footer */
-        footer {
-            text-align: center;
-            padding: 20px;
-            background-color: #0a1f44;
-            color: white;
+        /* --- ATHLETIC HERITAGE CALLOUT --- */
+        .heritage-card {
+            background: linear-gradient(145deg, #18181b 0%, #111113 100%);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 44px;
             margin-top: 40px;
+            display: flex;
+            gap: 36px;
+            align-items: center;
         }
 
-        /* Hiding the old horizontal rules since we have cards now */
-        hr {
-            display: none;
+        .heritage-tag {
+            font-family: monospace;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 10px;
+        }
+
+        .heritage-content h3 {
+            font-size: 1.8rem;
+            font-weight: 900;
+            margin-bottom: 12px;
+        }
+
+        .heritage-content p {
+            color: var(--text-muted);
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+
+        .heritage-link {
+            display: inline-block;
+            margin-top: 18px;
+            color: white;
+            font-weight: 700;
+            font-size: 0.9rem;
+            border-bottom: 1px solid var(--accent);
+            padding-bottom: 2px;
+        }
+
+        /* --- CONTACT & FOOTER --- */
+        .contact-box {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            padding: 80px 40px;
+            border-radius: 24px;
+            text-align: center;
+        }
+
+        .contact-box h2 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+        }
+
+        .contact-box p {
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            max-width: 620px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .email-link {
+            color: var(--accent);
+            font-size: 1.5rem;
+            font-weight: 700;
+            display: inline-block;
+            margin-bottom: 28px;
+        }
+
+        .contact-actions {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        footer {
+            border-top: 1px solid var(--border-color);
+            padding: 40px 0;
+            color: var(--text-muted);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .footer-logo {
+            font-weight: 900;
+            font-size: 1.2rem;
+            color: white;
+        }
+
+        .footer-logo span {
+            font-weight: 400;
+            color: var(--text-muted);
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 3.2rem;
+            }
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+            .heritage-card {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 30px;
+            }
+            .contact-box h2 {
+                font-size: 2.4rem;
+            }
+            .nav-links {
+                display: none;
+            }
         }
     </style>
 </head>
 <body>
 
-    <!-- This is the main header of your website -->
-    <header>
-        <h1>Akeem Dodson</h1>
-        <p>Former USA National Cricketer | Aspiring Web Developer</p>
-        <nav>
-            <ul>
-                <li><a href="#about">About Me</a></li>
-                <li><a href="#services">Coaching & Consulting</a></li>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <span class="logo-accent">AD</span> A L DODSON
+            </div>
+            <ul class="nav-links">
+                <li><a href="#expertise">Engineering</a></li>
+                <li><a href="#projects">Logistics & Systems</a></li>
+                <li><a href="#leadership">Foundation</a></li>
                 <li><a href="#contact">Contact</a></li>
+                <li><a href="https://akeemdodson.com" class="nav-cta" target="_blank" rel="noopener noreferrer">Main Hub &rarr;</a></li>
             </ul>
-        </nav>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <span class="badge">Creative Director • Systems Developer • Supply Chain Strategist</span>
+                <br><img src="resources/images/ald_hero_img.jpg" alt="Akeem Dodson" class="profile-img">
+                <h1>ENGINEERED <br><span class="italic-accent">FOR SCALE.</span></h1>
+                <p>Architecting digital logistics infrastructure, web systems, and brand strategies that bridge international markets with emerging Caribbean economies.</p>
+                
+                <div class="btn-group">
+                    <a href="#projects" class="btn">Explore Systems & Logistics</a>
+                    <a href="#expertise" class="btn btn-secondary">Technical Competencies</a>
+                </div>
+            </div>
+        </div>
     </header>
 
-    <hr>
-
-    <!-- The About Section -->
-    <section id="about">
-        <h2>About Me</h2>
-        <p>Hello! I am Akeem Dodson. I have spent years representing the USA National Cricket Team on the international stage as a Wicketkeeper-Batsman. Nowadays, I am channeling that same discipline and focus into the world of tech and business development.</p>
-        <p>Currently invested in furthering my knowledge of Computer Science and Web Development, in the hopes of building digital solutions for Guyana and the Caribbean, and helping the next generation of athletes achieve their full potential.</p>
+    <!-- Leadership Heritage Callout (Foundation) -->
+    <section id="leadership" class="section bg-alt">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Executive Profile</span>
+                <h2 class="section-title">Leadership & Discipline</h2>
+                <p class="section-subtitle">Principles forged on the international pitch applied directly to digital architecture and operational execution.</p>
+            </div>
+            <div class="heritage-card" style="margin-top: 0;">
+                <div class="heritage-content">
+                    <div class="heritage-tag">Athletic Heritage</div>
+                    <h3>International Athletic Discipline</h3>
+                    <p>My approach to systems engineering, rigorous execution, and tactical decision-making is rooted in years representing the United States National Cricket Team. The elite discipline, high-stakes communication, and technical focus forged on the international pitch are the exact principles I bring to technical systems, product design, and logistical execution.</p>
+                    <a href="https://akeemdodson.com" target="_blank" rel="noopener noreferrer" class="heritage-link">Explore Sports Performance Background at akeemdodson.com &rarr;</a>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <hr>
+    <!-- Selected Systems & Logistics Case Studies -->
+    <section id="projects" class="section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Case Studies</span>
+                <h2 class="section-title">Logistics & Digital Architecture</h2>
+                <p class="section-subtitle">Real-world applications connecting cross-border freight pipelines, e-commerce automation, and Caribbean commercial trade routes.</p>
+            </div>
+            
+            <div class="grid-2">
+                <!-- Case Study 1 -->
+                <div class="card project-card">
+                    <div>
+                        <div class="card-image-container">
+                            <img src="resources/images/sendez_logo_gray.jfif" alt="Send Eazy Logistics" class="card-img">
+                        </div>
+                        <span class="project-tag">Supply Chain Infrastructure</span>
+                        <h3>Send Eazy Logistics</h3>
+                        <p>End-to-end brand modernization and freight portal architecture designed for frictionless cross-border transit between North America and Georgetown, Guyana.</p>
+                        <ul class="card-list">
+                            <li>Multi-modal shipment tracking interfaces</li>
+                            <li>Automated landed-cost calculations and GRA customs workflows</li>
+                            <li>Consolidated freight management systems</li>
+                        </ul>
+                    </div>
+                </div>
 
-    <!-- The Services Section -->
-    <section id="services">
-        <h2>How We Can Work Together</h2>
-        
-        <h3>Cricket Mentorship & 1-on-1 Coaching</h3>
-        <p>Get video analysis, and mental tactical mentorship from a former USA National Team player. I help players bridge the gap between amateur and professional.</p>
-        
-        <h3>Team & Academy Consulting</h3>
-        <p>Strategic consulting, curriculum development, and masterclasses for academies that want to win championships.</p>
-        
-        <h3>Web Development (Coming Soon)</h3>
-        <p>Building high-performance digital ecosystems for businesses and athletes.</p>
+                <!-- Case Study 2 -->
+                <div class="card project-card">
+                    <div>
+                        <div class="card-image-container">
+                            <img src="resources/images/ald_gtnights_img.jpg" alt="Guyana Strategic Expansion" class="card-img">
+                        </div>
+                        <span class="project-tag">Commercial Strategy & Web Systems</span>
+                        <h3>Guyana Strategic Expansion</h3>
+                        <p>Architecting multi-sector commercial gateways connecting Caribbean industrial heritage with international software engineering standards.</p>
+                        <ul class="card-list">
+                            <li>Enterprise web portals tailored to local market bandwidth</li>
+                            <li>B2B partner interfaces and supply procurement pipelines</li>
+                            <li>Cloud-ready digital footprint expansion</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <hr>
+    <!-- Engineering & Architecture Competencies -->
+    <section id="expertise" class="section bg-alt">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Capabilities</span>
+                <h2 class="section-title">Core Engineering Disciplines</h2>
+                <p class="section-subtitle">Bridging front-of-house UI craft with reliable backend logic and supply chain execution.</p>
+            </div>
+            
+            <div class="grid-3">
+                <div class="card">
+                    <div>
+                        <span class="project-tag">Architecture</span>
+                        <h3>Full-Stack Web Systems</h3>
+                        <p>Designing and constructing responsive, high-performance web applications using semantic HTML5, modern CSS architectures, JavaScript, and cloud-native services.</p>
+                    </div>
+                </div>
 
-    <!-- The Contact Section -->
-    <section id="contact">
-        <h2>Let's Connect</h2>
-        <p>Ready to take your game or your business to the next level?</p>
-        <ul>
-            <li>Email: <a href="mailto:hello@akeemdodson.com">hello@akeemdodson.com</a></li>
-            <li>Instagram: <a href="https://instagram.com/iamspoogy">@iamspoogy</a></li>
-        </ul>
+                <div class="card">
+                    <div>
+                        <span class="project-tag">Operations</span>
+                        <h3>Supply Chain & Freight Strategy</h3>
+                        <p>Designing workflows that simplify cargo routing, customs handling, and last-mile distribution across developing international markets.</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div>
+                        <span class="project-tag">Brand Systems</span>
+                        <h3>Digital Product & Identity</h3>
+                        <p>Creating coherent design languages, UX frameworks, and commercial identities that convey technical authority and trust to global stakeholders.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <hr>
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+        <div class="container">
+            <div class="contact-box">
+                <h2>Let's Build.</h2>
+                <p>Available for web engineering, supply chain systems consultation, and digital infrastructure projects.</p>
+                <a href="mailto:hello@akeemdodson.com" class="email-link">hello@akeemdodson.com</a>
+                <div class="contact-actions">
+                    <a href="mailto:hello@akeemdodson.com" class="btn">Initiate Project</a>
+                    <a href="https://akeemdodson.com" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">Main Hub (akeemdodson.com)</a>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <!-- The Footer -->
+    <!-- Footer -->
     <footer>
-        <p>&copy; 2026 Akeem Dodson. Built from scratch.</p>
+        <div class="container footer-content">
+            <div class="footer-logo">AKEEM <span>DODSON</span></div>
+            <p>&copy; 2026 Akeem Dodson. All rights reserved. Engineering, Logistics & Digital Strategy.</p>
+        </div>
     </footer>
 
 </body>
